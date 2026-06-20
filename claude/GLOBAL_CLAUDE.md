@@ -23,4 +23,4 @@ Write idiomatic Go (per Effective Go).
 - **Concurrency:** "Share memory by communicating." Prefer channels over shared state with locks; keep goroutine lifetimes and ownership clear.
 - **Logging:** Use zerolog (`github.com/rs/zerolog`). Prefer structured, leveled logging over `fmt`/`log`. Dependency-inject the logger rather than using the global one where it makes sense. Log an error once at the boundary (handler/`main`) where it stops propagating — don't log and return the same error at every level.
 - **Doc comments** precede the declaration with no blank line and start with the name being documented.
-- **Tests:** Use testify (`github.com/stretchr/testify`) — `require` for assertions that should halt the test, `assert` for ones that can continue. Write table-driven tests with `t.Run` subtests.
+- **Tests:** Use testify (`github.com/stretchr/testify`) — `require` for assertions that should halt the test, `assert` for ones that can continue. Write table-driven tests with `t.Run` subtests. Run tests in parallel with `t.Parallel()` where it's safe.
