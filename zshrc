@@ -1,0 +1,64 @@
+#  ~/.zshrc — interactive shell configuration
+
+# ─── Environment ──────────────────────────────────────────────────────────────
+# User-local binaries / env (rust, uv, etc.)
+[ -f "$HOME/.local/bin/env" ] && . "$HOME/.local/bin/env"
+
+# Secret env vars, kept out of this file (see ~/.zsh_secrets)
+[ -f "$HOME/.zsh_secrets" ] && source "$HOME/.zsh_secrets"
+
+# ─── History ──────────────────────────────────────────────────────────────────
+HISTFILE="$HOME/.zsh_history"
+HISTSIZE=1000000
+SAVEHIST=1000000
+setopt EXTENDED_HISTORY       # record timestamp + duration for each command
+setopt HIST_IGNORE_ALL_DUPS   # drop older duplicate entries
+setopt HIST_IGNORE_SPACE      # don't record commands starting with a space
+setopt HIST_REDUCE_BLANKS     # trim superfluous whitespace
+setopt HIST_FIND_NO_DUPS      # don't show a match already seen while searching
+setopt HIST_SAVE_NO_DUPS      # don't write duplicates to the history file
+setopt SHARE_HISTORY          # share history across running shells
+
+# ─── Shell options ────────────────────────────────────────────────────────────
+setopt AUTO_CD                # `dir` instead of `cd dir`
+setopt INTERACTIVE_COMMENTS   # allow # comments in the interactive shell
+
+# ─── Editor ───────────────────────────────────────────────────────────────────
+if command -v nvim &>/dev/null; then
+  export EDITOR="nvim"
+  export VISUAL="nvim"
+  alias vi="nvim"
+  alias vim="nvim"
+fi
+
+# ─── Aliases ──────────────────────────────────────────────────────────────────
+alias cp="cp -i"
+alias mv="mv -i"
+command -v trash &>/dev/null && alias rm="trash"
+
+# ─── Functions ────────────────────────────────────────────────────────────────
+# cd into a directory and list its contents
+cl() { cd "$1" && ls; }
+
+# Update everything Homebrew manages, then clean up
+brewup() {
+  brew update &&
+  brew upgrade &&
+  brew upgrade --cask --greedy &&
+  brew cleanup
+}
+
+# ─── Completion ───────────────────────────────────────────────────────────────
+autoload -Uz compinit && compinit
+
+# ─── Plugins ──────────────────────────────────────────────────────────────────
+# zsh-syntax-highlighting must be sourced last (after compinit / other plugins).
+BREW_PREFIX="$(brew --prefix)"
+[ -f "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh" ] &&
+  source "$BREW_PREFIX/share/zsh-autosuggestions/zsh-autosuggestions.zsh"
+command -v fzf &>/dev/null && source <(fzf --zsh)
+[ -f "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh" ] &&
+  source "$BREW_PREFIX/share/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh"
+
+# ─── Prompt ───────────────────────────────────────────────────────────────────
+command -v starship &>/dev/null && eval "$(starship init zsh)"
