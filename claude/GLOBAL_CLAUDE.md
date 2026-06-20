@@ -9,6 +9,17 @@ Personal preferences that apply to all projects. Keep this file short — long i
 - **YOU MUST** name branches using Conventional Branch: `<type>/<description>`.
   Use types like `feature`, `bugfix`, `hotfix`, `release`, `chore`. Use only lowercase letters, numbers, and hyphens to separate words (no spaces, underscores, or uppercase); no leading/trailing or consecutive hyphens. Dots are allowed only in release versions (e.g. `release/v1.2.0`).
 - **YOU MUST NOT** commit directly to the default branch (`main`/`master`). Create a `<type>/<description>` branch first, then open a PR.
+- **PR/MR descriptions:** Check for a repo template first (e.g. `.github/PULL_REQUEST_TEMPLATE.md`, `.gitlab/merge_request_templates/`) and use it if present. Otherwise use:
+
+  ```markdown
+  ## What
+
+  ## Why
+
+  ## Testing
+  ```
+
+  If no testing was done, put a `TODO` under `## Testing`.
 
 ## Go
 
