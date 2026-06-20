@@ -24,3 +24,7 @@ Write idiomatic Go (per Effective Go).
 - **Logging:** Use zerolog (`github.com/rs/zerolog`). Prefer structured, leveled logging over `fmt`/`log`. Dependency-inject the logger rather than using the global one where it makes sense. Log an error once at the boundary (handler/`main`) where it stops propagating — don't log and return the same error at every level.
 - **Doc comments** precede the declaration with no blank line and start with the name being documented.
 - **Tests:** Use testify (`github.com/stretchr/testify`) — `require` for assertions that should halt the test, `assert` for ones that can continue. Write table-driven tests with `t.Run` subtests. Run tests in parallel with `t.Parallel()` where it's safe.
+
+## Python
+
+- **Use `uv`** for everything: `uv run`, `uv add`/`uv remove` for dependencies, `uv sync` to install, `uv venv` for environments. Don't use `pip`, `pipenv`, `poetry`, or `python -m venv` directly.
