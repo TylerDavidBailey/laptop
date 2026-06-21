@@ -12,3 +12,4 @@ Personal macOS setup repo: shell config, Homebrew packages, and tooling.
 - `zsh/zshrc` — Zsh configuration, symlinked to `~/.zshrc`
 - `brew/Brewfile` — Homebrew formulae and casks (`brew bundle --file=brew/Brewfile`)
 - `claude/GLOBAL_CLAUDE.md` — Global Claude Code instructions, linked to `~/.claude/CLAUDE.md`
+- `claude/rules/` — Path-scoped Claude Code style rules (Go, Python, shell, Markdown), each linked into `~/.claude/rules/` and loaded only for matching files
