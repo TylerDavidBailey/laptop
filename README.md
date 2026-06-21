@@ -7,13 +7,4 @@ My macOS setup — shell config, Homebrew packages, and tooling.
 - `zsh/zshrc` — Zsh configuration
 - `brew/Brewfile` — Homebrew packages and casks
 - `claude/GLOBAL_CLAUDE.md` — Global Claude Code instructions (link to `~/.claude/CLAUDE.md`)
-
-## Usage
-
-```sh
-# Symlink the shell config
-ln -s "$PWD/zsh/zshrc" ~/.zshrc
-
-# Install everything from the Brewfile
-brew bundle --file=brew/Brewfile
-```
+- `claude/rules/` — Path-scoped Claude Code style rules (link into `~/.claude/rules/`)
