@@ -34,7 +34,7 @@ fi
 # ─── Aliases ──────────────────────────────────────────────────────────────────
 alias cp="cp -i"
 alias mv="mv -i"
-command -v trash &>/dev/null && alias rm="trash"
+alias rm="rm -i"
 
 # ─── Functions ────────────────────────────────────────────────────────────────
 # cd into a directory and list its contents
